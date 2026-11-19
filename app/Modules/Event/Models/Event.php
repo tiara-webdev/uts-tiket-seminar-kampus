@@ -2,12 +2,16 @@
 
 namespace App\Modules\Event\Models;
 
+use App\Modules\Event\Database\Factories\EventFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Event extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'category_id',
         'title',
@@ -22,6 +26,11 @@ class Event extends Model
         return [
             'event_date' => 'datetime',
         ];
+    }
+
+    protected static function newFactory(): EventFactory
+    {
+        return EventFactory::new();
     }
 
     // Kebalikan One-to-Many: event milik satu kategori
