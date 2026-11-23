@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Modules\Event\Database\Seeders\EventSeeder;
+use App\Modules\Registration\Database\Seeders\RegistrationSeeder;
 use App\Modules\Ticket\Database\Seeders\TicketSeeder;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             EventSeeder::class,
             TicketSeeder::class,
+            RegistrationSeeder::class,
         ]);
     }
 }
