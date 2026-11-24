@@ -42,7 +42,7 @@
         }
 
         .container.wide {
-            max-width: 720px;
+            max-width: 900px;
         }
 
         label {
@@ -85,12 +85,64 @@
             background: #e8f5e9;
             color: #1b5e20;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid #eee;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            box-sizing: border-box;
+        }
+
+        .inline {
+            display: inline;
+        }
+
+        .btn-sm {
+            padding: 4px 10px;
+            border: 0;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #fff;
+            background: #1f3a5f;
+        }
+
+        .btn-danger {
+            background: #b71c1c;
+        }
     </style>
 </head>
 
 <body>
     <nav>
-        <strong>Tiket Seminar Kampus</strong>
+        <div>
+            <strong>Tiket Seminar Kampus</strong>
+            @if (Route::has('events.index'))
+                <a href="{{ route('events.index') }}">Event</a>
+            @endif
+            @auth
+                @if (auth()->user()->role === 'participant' && Route::has('my-tickets'))
+                    <a href="{{ route('my-tickets') }}">Tiket Saya</a>
+                @endif
+                @if (auth()->user()->role === 'admin' && Route::has('admin.home'))
+                    <a href="{{ route('admin.home') }}">Admin</a>
+                @endif
+            @endauth
+        </div>
         <div>
             @auth
                 <span>{{ auth()->user()->name }} ({{ auth()->user()->role }})</span>
