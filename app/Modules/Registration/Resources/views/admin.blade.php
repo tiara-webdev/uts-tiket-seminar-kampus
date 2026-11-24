@@ -4,5 +4,8 @@
 
 @section('content')
     <h2>Halaman Admin</h2>
-    <p>Halaman ini hanya bisa dibuka oleh pengguna dengan role admin.</p>
+    <ul>
+        <li><a href="{{ route('admin.registrations') }}">Pesanan Masuk</a></li>
+        <li><a href="{{ route('admin.check-in') }}">Check-in Peserta</a></li>
+    </ul>
 @endsection
