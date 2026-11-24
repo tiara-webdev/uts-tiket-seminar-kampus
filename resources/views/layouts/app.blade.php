@@ -90,7 +90,15 @@
 
 <body>
     <nav>
-        <strong>Tiket Seminar Kampus</strong>
+        <div>
+            <strong>Tiket Seminar Kampus</strong>
+            <a href="{{ route('events.index') }}">Event</a>
+            @auth
+                @if (auth()->user()->role === 'participant')
+                    <a href="{{ route('my-tickets') }}">Tiket Saya</a>
+                @endif
+            @endauth
+        </div>
         <div>
             @auth
                 <span>{{ auth()->user()->name }} ({{ auth()->user()->role }})</span>
