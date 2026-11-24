@@ -1,6 +1,7 @@
 <?php
 
 use App\Modules\Registration\Http\Controllers\AuthController;
+use App\Modules\Registration\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('web')->group(function () {
@@ -16,6 +17,14 @@ Route::middleware('web')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/dashboard', fn() => view('registration::dashboard'))->name('dashboard');
+
+        // Khusus Peserta
+        Route::middleware('role:participant')->group(function () {
+            Route::post('/orders', [RegistrationController::class, 'store'])->name('orders.store');
+            Route::get('/my-tickets', [RegistrationController::class, 'index'])->name('my-tickets');
+            Route::post('/registrations/{registration}/cancel', [RegistrationController::class, 'cancel'])
+                ->name('registrations.cancel');
+        });
 
         // Khusus Admin
         Route::middleware('role:admin')->group(function () {
