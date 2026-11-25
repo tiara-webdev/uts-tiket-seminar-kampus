@@ -7,5 +7,6 @@
     <ul>
         <li><a href="{{ route('admin.registrations') }}">Pesanan Masuk</a></li>
         <li><a href="{{ route('admin.check-in') }}">Check-in Peserta</a></li>
+        <li><a href="{{ route('admin.events.index') }}">Kelola Event</a></li>
     </ul>
 @endsection
